@@ -2,7 +2,7 @@
 
   Retrieve scan data from an RTP LivePass based season pass account.
   
-  Currently only supports Park City Mountain Resort.
+  Defaults to Park City Mountain Resort.
   
 ## Install
 
@@ -33,3 +33,17 @@ async.waterfall([
 	console.log(result);
 });
 ```
+
+## Retrieving Data from a different Resort
+
+  Once you've determined the root endpoint for your resort's LivePass API, you can override the LivePassUser object's endpoint value.
+
+  For example:
+
+```javascript
+var user = new LivePassUser();
+
+user._resortEndpoint = "https://www.someresort.com/endpoint/";
+```
+
+For more information on determining your resort's LivePass API endpoint, see my blog post here: http://jeffstieler.com/projects/mylivepass-season-ski-pass-data-retrieval/
