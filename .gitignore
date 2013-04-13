@@ -1,0 +1,8 @@
+# JetBrains editor files
+.idea
+
+# NodeJS module
+node_modules
+
+# NPM files
+npm-debug.log
