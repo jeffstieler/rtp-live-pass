@@ -1,0 +1,50 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+    <s:Header>
+        <a:Action s:mustUnderstand="1">
+            http://RTP.LivePass.Authentication/ILivePassAuthenticationService/AuthenticateResponse
+        </a:Action>
+        <ActivityId CorrelationId="8266fbbc-1d47-4a0c-87bd-b31445475e24" xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics">
+            ad744e23-f9b9-4edd-88e1-b307f7ece7eb
+        </ActivityId>
+        <a:RelatesTo>urn:uuid:9166B9A3-F1DD-4CBA-B2ED-7201ED41E589</a:RelatesTo>
+    </s:Header>
+    <s:Body>
+        <AuthenticateResponse xmlns="http://RTP.LivePass.Authentication">
+            <AuthenticateResult>
+                <User xmlns="">
+                    <Code>0</Code>
+                    <Text></Text>
+                    <CustomerId>1234567</CustomerId>
+                    <Username>user@example.com</Username>
+                    <PasswordHint>.</PasswordHint>
+                    <FirstName>Some</FirstName>
+                    <LastName>User</LastName>
+                    <BirthDate>1970-01-01</BirthDate>
+                    <GenderCode>1</GenderCode>
+                    <GenderDescription></GenderDescription>
+                    <PassMediaCode>GAT1234567</PassMediaCode>
+                    <ProductHeaderCode>123456</ProductHeaderCode>
+                    <ImageUpdateDate>Dec  7 2011  3:35PM</ImageUpdateDate>
+                    <ProductHeaderDescription>SKIDATA Media</ProductHeaderDescription>
+                    <ResortChargePaymentCode>-1</ResortChargePaymentCode>
+                    <AuthenticatedInd>Y</AuthenticatedInd>
+                    <EmailAddress>user@example.com</EmailAddress>
+                    <Rfid>12345678901234567890</Rfid>
+                    <CurrentAccessCode></CurrentAccessCode>
+                    <PassMediaPrintStatusCode>1</PassMediaPrintStatusCode>
+                    <PassMediaAccessHotlistCode>0</PassMediaAccessHotlistCode>
+                    <AccessAccessHotlistCode>0</AccessAccessHotlistCode>
+                    <AccessProductHeaderCode>-1</AccessProductHeaderCode>
+                    <AccessProductHeaderDescription></AccessProductHeaderDescription>
+                    <AccessCodePrintStatusCode>0</AccessCodePrintStatusCode>
+                    <PrepaidAccessScanSummary>
+                        <TotalUses>150</TotalUses>
+                        <TotalDays>100</TotalDays>
+                        <FirstUseDate></FirstUseDate>
+                        <LastUseDate></LastUseDate>
+                    </PrepaidAccessScanSummary>
+                </User>
+            </AuthenticateResult>
+        </AuthenticateResponse>
+    </s:Body>
+</s:Envelope>

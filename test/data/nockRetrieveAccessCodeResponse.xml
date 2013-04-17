@@ -1,0 +1,30 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+    <s:Header>
+        <a:Action s:mustUnderstand="1">
+            http://RTP.LivePass.CrmUserService/ICrmUserService/RetrievePrepaidAccessProductsResponse
+        </a:Action>
+        <ActivityId CorrelationId="e4c3cb0e-e02d-4010-9a83-fb409ba81f3a" xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics">
+            dc4913bb-774a-4e56-a4fe-f5d2e6524a2a
+        </ActivityId>
+        <a:RelatesTo>urn:uuid:E0CF37AF-21CB-42F0-9297-ADACD58779C5</a:RelatesTo>
+    </s:Header>
+    <s:Body>
+        <RetrievePrepaidAccessProductsResponse xmlns="http://RTP.LivePass.CrmUserService">
+            <RetrievePrepaidAccessProductsResult>
+                <AccessProducts xmlns="">
+                    <AccessProduct>
+                        <AccessCode>PCBAN00KHR4A2H7U4</AccessCode>
+                        <ProductHeaderDescription>Adult Season Pass + 1 Option (N) 12/13</ProductHeaderDescription>
+                        <PrepaidAccessStatusDescription>OPEN</PrepaidAccessStatusDescription>
+                        <PrepaidAccessStatusCode>1</PrepaidAccessStatusCode>
+                        <ProductDescription>PC: Adult Full Season Pass 12/13 (N)</ProductDescription>
+                        <SaleLocationDescription>SALELOCATIONDESCRIPTION</SaleLocationDescription>
+                        <EffectiveDate>2012-04-01</EffectiveDate>
+                        <ExpirationDate>2013-04-30</ExpirationDate>
+                        <TransactionId>231468596</TransactionId>
+                    </AccessProduct>
+                </AccessProducts>
+            </RetrievePrepaidAccessProductsResult>
+        </RetrievePrepaidAccessProductsResponse>
+    </s:Body>
+</s:Envelope>
