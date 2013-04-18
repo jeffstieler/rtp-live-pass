@@ -19,7 +19,12 @@ var user = new LivePassUser();
 
 async.waterfall([
 	function (callback) {
-		user.authenticate("email@example.com", "password", function(err, accessCode) {
+		user.authenticate("email@example.com", "password", function(err, userObject) {
+			callback(err, userObject);
+		});
+	},
+	function (userObject, callback) {
+		user.getAccessCode(function(err, accessCode) {
 			callback(err, accessCode);
 		});
 	},
