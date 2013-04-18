@@ -49,14 +49,13 @@ module.exports = {
 
 		var _nock = nock("https://secure.parkcitymountain.com");
 
+		// we will check 5 properties of the user object
+		test.expect(5);
+
 		async.waterfall([
 			function readAuthenticateResponseFile(callback) {
 				fs.readFile(__dirname + "/data/nockAuthenticateResponse.xml", function(err, data) {
-					if (err) {
-						callback(err, null);
-					} else {
-						callback(null, data);
-					}
+					callback(err, data);
 				});
 			},
 			function gzipAuthenticateResponse(nockAuthenticateResponse, callback) {
@@ -68,13 +67,36 @@ module.exports = {
 				_nock.post("/mobile/LivePassAuthenticationService.svc").reply(200, responseBody);
 				callback(null, _nock);
 			},
-			function readAccessCodeResponseFile(_nock, callback) {
+			function authenticateUser(_nock, callback) {
+				var user = new LivePassUser();
+				user.authenticate("user@example.com", "password", function(err, userObject) {
+
+					test.equal(userObject.CustomerId, '1234567');
+					test.equal(userObject.FirstName, 'Some');
+					test.equal(userObject.LastName, 'User');
+					test.equal(userObject.BirthDate, '1970-01-01');
+					test.equal(userObject.PassMediaCode, 'GAT1234567');
+
+					callback(err, userObject);
+				});
+			}
+		], function(err, result) {
+
+			test.done();
+		});
+
+	},
+	"LivePassUser.getAccessCode()": function(test) {
+
+		var _nock = nock("https://secure.parkcitymountain.com");
+
+		// make sure the assert of the access code occurs
+		test.expect(1);
+
+		async.waterfall([
+			function readAccessCodeResponseFile(callback) {
 				fs.readFile(__dirname + "/data/nockRetrieveAccessCodeResponse.xml", function(err, data) {
-					if (err) {
-						callback(err, null);
-					} else {
-						callback(null, data);
-					}
+					callback(err, data);
 				});
 			},
 			function gzipAccessCodeResponse(nockRetrieveAccessCodeResponse, callback) {
@@ -86,23 +108,24 @@ module.exports = {
 				_nock.post("/mobile/CrmUserService.svc").reply(200, responseBody);
 				callback(null, _nock);
 			},
-			function authenticateUser(_nock, callback) {
+			function getUserAccessCode(_nock, callback) {
 				var user = new LivePassUser();
-				user.authenticate("user@example.com", "password", function(err, userObject) {
 
-					test.equal(userObject.CustomerId, '1234567');
-					test.equal(userObject.FirstName, 'Some');
-					test.equal(userObject.LastName, 'User');
-					test.equal(userObject.BirthDate, '1970-01-01');
-					test.equal(userObject.PassMediaCode, 'GAT1234567');
-					test.equal(userObject.AccessCode, 'PCBAN00KHR4A2H7U4');
+				// LivePassUser.getAccessCode() requires a CustomerID, so spoof it
+				user.CustomerId = '12345657';
 
-					callback(err, userObject);
+				user.getAccessCode(function(err, accessCode) {
+
+					test.equal(accessCode, 'PCBAN00KHR4A2H7U4');
+
+					callback(err, accessCode);
+
 				});
 			}
-		], function(err, result) {
+		], function (err, result) {
 
 			test.done();
+
 		});
 
 	}
