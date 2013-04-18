@@ -1,9 +1,11 @@
 # RTP LivePass data retrieval for Node
 
   Retrieve scan data from an RTP LivePass based season pass account.
-  
+
   Defaults to Park City Mountain Resort.
-  
+
+  [![Build Status](https://travis-ci.org/jeffstieler/rtp-live-pass.png)](https://travis-ci.org/jeffstieler/rtp-live-pass)
+
 ## Install
 
     $ npm install rtp-live-pass
