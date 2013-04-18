@@ -1,6 +1,6 @@
 {
   "name": "rtp-live-pass",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Retrieve scan data from your RTP LivePass based resort season pass.",
   "main": "index.js",
   "dependencies": {
