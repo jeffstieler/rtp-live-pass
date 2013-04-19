@@ -1,0 +1,18 @@
+<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+	<s:Header>
+		<a:Action s:mustUnderstand="1">http://RTP.LivePass.CrmUserService/ICrmUserService/RetrieveIndividualAccessScanHistoryResponse</a:Action>
+		<ActivityId xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics" CorrelationId="ff4b9ff2-17e2-4fd4-b217-c6fa00b6632f">6278e477-3200-4c96-b182-1e9650bd567a</ActivityId>
+		<a:RelatesTo>urn:uuid:E8E110DE-C727-43BE-97AE-79DAE39F6807</a:RelatesTo>
+	</s:Header>
+	<s:Body>
+		<RetrieveIndividualAccessScanHistoryResponse xmlns="http://RTP.LivePass.CrmUserService">
+			<RetrieveIndividualAccessScanHistoryResult>
+				<ScanHistory xmlns="">
+					<Scan AccessDate="2013-04-14" AccessTime="10:25 AM" AccessLocationDescription="PC: PayDay"/>
+					<Scan AccessDate="2013-04-13" AccessTime="1:16 PM" AccessLocationDescription="PC: Crescent"/>
+					<Scan AccessDate="2013-04-12" AccessTime="2:37 PM" AccessLocationDescription="PC: Crescent"/>
+				</ScanHistory>
+			</RetrieveIndividualAccessScanHistoryResult>
+		</RetrieveIndividualAccessScanHistoryResponse>
+	</s:Body>
+</s:Envelope>

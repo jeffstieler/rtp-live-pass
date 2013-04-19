@@ -128,6 +128,67 @@ module.exports = {
 
 		});
 
+	},
+	"LivePassUser.getScanHistory()": function(test) {
+
+		var _nock = nock("https://secure.parkcitymountain.com");
+
+		async.waterfall([
+			function readScanHistoryResponseFile(callback) {
+				fs.readFile(__dirname + "/data/nockRetrieveScanHistoryResponse.xml", function(err, data) {
+					callback(err, data);
+				});
+			},
+			function gzipScanHistoryResponse(nockRetrieveScanHistoryResponse, callback) {
+				zlib.gzip(new Buffer(nockRetrieveScanHistoryResponse), function(err, result) {
+					callback(err, result);
+				});
+			},
+			function mockScanHistoryResponse(responseBody, callback) {
+				_nock.post("/mobile/CrmUserService.svc").reply(200, responseBody);
+				callback(null, _nock);
+			},
+			function getUserScanHistory(_nock, callback) {
+				var user = new LivePassUser();
+
+				test.expect(1);
+
+				// LivePassUser.getScanHistory() requires a CustomerID and AccessCode, so spoof them
+				user.CustomerId = '12345657';
+				user.AccessCode = 'PCBAN00KHR4A2H7U4';
+
+				var expected = [
+					{
+						AccessDate: '2013-04-14',
+						AccessTime: '10:25 AM',
+						AccessLocationDescription: 'PC: PayDay'
+					},
+					{
+						AccessDate: '2013-04-13',
+						AccessTime: '1:16 PM',
+						AccessLocationDescription: 'PC: Crescent'
+					},
+					{
+						AccessDate: '2013-04-12',
+						AccessTime: '2:37 PM',
+						AccessLocationDescription: 'PC: Crescent'
+					}
+				];
+
+				user.getScanHistory(function (err, scanHistory) {
+
+					test.deepEqual(expected, scanHistory);
+
+					callback(err, scanHistory);
+
+				});
+			}
+		], function (err, result) {
+
+			test.done();
+
+		});
+
 	}
 };
 
